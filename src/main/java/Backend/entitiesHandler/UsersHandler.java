@@ -51,6 +51,19 @@ public  class UsersHandler {
 
     }
 
+    public static boolean deleteUser(String userName)
+    {
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery criteria = builder.createQuery(Users.class);
+        Root<History> root = criteria.from(Users.class);
+        criteria.where(builder.equal(root.get("user"), userName));//where user id = user.getIdUser()
+        Query query = session.createQuery(criteria);
+        List<Users> allUser = query.getResultList();
+        session.beginTransaction();
+        session.delete(allUser.get(0));
+        session.getTransaction().commit();
+        return true;
+    }
 
     public static List<History> getPersonalHistroy(Users user)
     {

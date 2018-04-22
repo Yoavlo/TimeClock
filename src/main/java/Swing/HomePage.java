@@ -25,9 +25,18 @@ public class HomePage {
     String prefsKeyPassword;
     SendEmail sendEmail;
 
-   // private UsersHandler usersHandler;
+
+    static  JFrame  globalFrame;
+
+    public JPanel getPanel1() {
+        return panel1;
+    }
+
+
+    // private UsersHandler usersHandler;
 
     public HomePage(JFrame frame) {
+        globalFrame=frame;
         prefs=Preferences.userRoot().node(this.getClass().getName());
         prefsKeyrememberMeCheckBox = "rememberMeCheckBox";
         prefsKeyUserName="prefsKeyUserName";
@@ -69,6 +78,7 @@ public class HomePage {
                 //    panel1.repaint();
 
                     frame.setContentPane(new Actions(frame).getPanelActions());
+                    frame.setJMenuBar(Menu.getjMenuBar());
                     frame.pack();
                     frame.setVisible(true);
 
@@ -94,6 +104,7 @@ public class HomePage {
             }
         });
     }
+
 
     public static void main(String [] args)
     {

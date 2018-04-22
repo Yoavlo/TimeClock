@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Actions {
+public class Actions    {
     private JButton exitButton;
     private JButton personalTimeHistoryButton;
     private JButton logInButton;
@@ -97,19 +97,7 @@ public class Actions {
         personalTimeHistoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            //    ArrayList<Users> historyUser = (ArrayList) UsersHandler.getPersonalHistroy(UsersHandler.getCurrentUser());
-
-             //   JFrame frame = new JFrame("HomePage");
                 new PersonalTime( (ArrayList) UsersHandler.getPersonalHistroy(UsersHandler.getCurrentUser()) , false);
-             //   frame.setContentPane(new PersonalTime().getPersonalTimeMainPanel());
-                //  frame.setContentPane(new Actions().getPanelActions());
-//                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//                frame.pack();
-//                frame.setVisible(true);
-//                frame.setContentPane(new PersonalTime().getPersonalTimeMainPanel());
-//                frame.pack();
-//                frame.setVisible(true);
-
 
             }
         });
