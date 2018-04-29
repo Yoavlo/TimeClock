@@ -67,28 +67,17 @@ public class HomePage {
                 }
 
 
-
-
-
                 UsersHandler.initialize();
                 if(UsersHandler.checkPassword(textFieldUser.getText(),passwordField))
                 {
-                    System.out.println("go to diffrent frame");
-                  //  panel1.removeAll();
-                //    panel1.repaint();
-
                     frame.setContentPane(new Actions(frame).getPanelActions());
-                    frame.setJMenuBar(Menu.getjMenuBar());
+
+                    frame.setJMenuBar(new Menu().getjMenuBar());
                     frame.pack();
                     frame.setVisible(true);
-
-
-
-
                 }
                 else
                 {
-                  //  labelStatus.setVisible(true);
                     labelStatus.setText("Wrong User name or password");
                 }
 

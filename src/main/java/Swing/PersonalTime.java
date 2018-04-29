@@ -2,9 +2,14 @@ package Swing;
 
 import Backend.entities.History;
 import Backend.entitiesHandler.UsersHandler;
+import Excel.ExcelWriter;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -18,9 +23,13 @@ public class PersonalTime {
 
 
     private JPanel personalTimeMainPanel;
+    private JPanel panelButton;
 
     public PersonalTime(List<History> histroyUser, boolean wantAllUser) {
         JTable table = new JTable();
+        Panel titlePanel=new Panel();
+
+
 
 
 
@@ -47,7 +56,7 @@ public class PersonalTime {
         ArrayList<History> historyUser= (ArrayList) histroyUser;
         if(wantAllUser==true)
         {
-
+            titlePanel.add(new JLabel("Time of all users"));
             for(History history:historyUser)
             {
                 model.addRow(new Object[]{getUserByUserID(history.getUserId()).getUser(), history.getLogin(), history.getLogout(),getDateBetweenDates(history.getLogin(), history.getLogout()) , history.getDate()});
@@ -55,6 +64,7 @@ public class PersonalTime {
         }
         else
         {
+            titlePanel.add(new JLabel("Personal time"));
             for(History history:historyUser)
             {
                 model.addRow(new Object[]{history.getLogin(), history.getLogout(),getDateBetweenDates(history.getLogin(), history.getLogout()) , history.getDate()});
@@ -62,19 +72,33 @@ public class PersonalTime {
         }
 
 
-
-
-
-
         table.setModel(model);
 
 
+        setupButtonExtractExcel(table);
 
 
         JFrame f = new JFrame();
         f.setSize(300, 300);
-        f.add(new JScrollPane(table));
+
+        f.getContentPane().add(titlePanel, BorderLayout.NORTH);
+        f.getContentPane().add(new JScrollPane(table), BorderLayout.CENTER);
+        f.getContentPane().add(this.panelButton, BorderLayout.SOUTH);
+
         f.setVisible(true);
+
+    }
+
+    private void setupButtonExtractExcel(JTable jTable) {
+        JButton buttonExtractExcel= new JButton("extract to Excel ");
+        this.panelButton = new JPanel();
+        this.panelButton.add(buttonExtractExcel);
+        buttonExtractExcel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ExcelWriter(jTable);
+            }
+        });
 
     }
 

@@ -19,6 +19,7 @@ public class Menu {
     {
 
         jMenuBar= new JMenuBar();
+        System.out.println("jMenuBar intialized");
         jMenuHistroy= new JMenu("History");
         jMenuUsers= new JMenu("Users");
         jMenuSettings  = new JMenu("Settings");

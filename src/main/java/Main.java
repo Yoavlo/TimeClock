@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +26,14 @@ import java.util.List;
 public class Main {
 
     public static void main(String [] args) {
+        JFileChooser chooser = new JFileChooser();
+
+        int returnVal = chooser.showSaveDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: " +
+                 //   chooser.getSelectedFile().getName());
+                    chooser.getSelectedFile().toString());
+        }
 
 
         //UsersHandler.saveLogIn(localDateTime.toLocalTime(),localDateTime.toLocalDate());
